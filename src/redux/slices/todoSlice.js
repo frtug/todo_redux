@@ -19,17 +19,15 @@ export const todoSlice = createSlice({
   },
   toggleCompleteTodo: (state, action) => {
     state.todos = state.todos.map((todo)=> 
-      {return(
-      (todo.id === action.payload) ?
+        
+    (todo.id === action.payload) ?
         {
           ...todo,
           completed:!todo.completed
         }
         :
-         {todo}
+         todo
       )
-      }
-    );
   },
   updateTodo:(state,action)=>{
     console.log(action.payload)

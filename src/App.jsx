@@ -7,6 +7,7 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { TodoApp } from './todoApp';
 import { store } from './redux/store/store';
+import useCustom from './hooks/useCustom';
 
 // Action Types
 // const ADD_TODO = 'ADD_TODO';
@@ -53,12 +54,29 @@ import { store } from './redux/store/store';
 // );
 
 // TodoApp Component
+const CustomHookComponent = ()=>{
+  const url = "https://jsonplaceholder.typicode.com/posts"
+  const {data,loading} = useCustom(url)
+  if(loading) return <h1>Loading.....</h1>
+  return(
+    <div>
+      <h1>Fetched Data</h1>
+      <ul>
+        {console.log(data)}
+        { data.map((item)=> 
+          <li key={item.id}>{item.title}</li>
+        )}
+      </ul>
+    </div>
 
+  )
+}
 
 // App Component
 function App() {
   return (
     <Provider store={store}>
+      <CustomHookComponent/>
       <TodoApp />
     </Provider>
   );
