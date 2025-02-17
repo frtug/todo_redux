@@ -57,6 +57,8 @@ import useTheme from './hooks/useTheme';
 // TodoApp Component
 const CustomHookComponent = ()=>{
   const url = `https://api.github.com/users/${frtug}`
+  // TODO: 17 Feb -> Fetch the value from the above url and make a card shaped. For more information of the look of the page 
+  // check on the telegram group for the UI of the app.
   const {data,loading} = useCustom(url)
   if(loading)  return <h1>Loading.....</h1>
   return(
