@@ -56,7 +56,7 @@ import useTheme from './hooks/useTheme';
 
 // TodoApp Component
 const CustomHookComponent = ()=>{
-  const url = "https://jsonplaceholder.typicode.com/posts"
+  const url = `https://api.github.com/users/${frtug}`
   const {data,loading} = useCustom(url)
   if(loading)  return <h1>Loading.....</h1>
   return(
@@ -79,7 +79,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      {/* <CustomHookComponent/> */}
+      <CustomHookComponent/>
       <div className='bg-white dark:bg-gray-800'>
       <button >
         {
