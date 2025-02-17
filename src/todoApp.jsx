@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo, toggleCompleteTodo, deleteTodo, updateTodo,countIncrease,countDecrease } from "./redux/slices/todoSlice";
 
 import { Plus,CheckCircle, Circle, CirclePlus, Minus, Pen, Save, Trash2 } from "lucide-react";
+import useTheme from "./hooks/useTheme";
 
 const TodoItem = ({ todo, onToggle, onDelete, onUpdate, onIncrement, onDecrement }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -91,11 +92,12 @@ export const TodoApp = () => {
     // const root = window.document.documentElement;
     // console.log(root)
     // root.classList.add('dark')
+    
     const todos = useSelector((state) => state.todo.todos); // Access `todos` from the `todo` slice
     
     const [newTodo, setNewTodo] = useState('');
     const dispatch = useDispatch();
-    const [editing,setEditing] = useState(false);
+    // const [editing,setEditing] = useState(false);
     const AddTodo = (event) => {
       event.preventDefault();
       if (newTodo.trim()) {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { MoonStar, Plus, Sun } from 'lucide-react';
 import './App.css';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { thunk } from 'redux-thunk';
@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { TodoApp } from './todoApp';
 import { store } from './redux/store/store';
 import useCustom from './hooks/useCustom';
+import useTheme from './hooks/useTheme';
 
 // Action Types
 // const ADD_TODO = 'ADD_TODO';
@@ -57,7 +58,7 @@ import useCustom from './hooks/useCustom';
 const CustomHookComponent = ()=>{
   const url = "https://jsonplaceholder.typicode.com/posts"
   const {data,loading} = useCustom(url)
-  if(loading) return <h1>Loading.....</h1>
+  if(loading)  return <h1>Loading.....</h1>
   return(
     <div>
       <h1>Fetched Data</h1>
@@ -74,9 +75,25 @@ const CustomHookComponent = ()=>{
 
 // App Component
 function App() {
+  const {theme,toggleTheme} = useTheme();
+
   return (
     <Provider store={store}>
-      <CustomHookComponent/>
+      {/* <CustomHookComponent/> */}
+      <div className='bg-white dark:bg-gray-800'>
+      <button >
+        {
+        theme === 'dark' ? 
+        <MoonStar onClick={()=>toggleTheme("")} className="text-gray-600 p-2 w-10 h-10" />
+        :
+        <Sun onClick={()=>toggleTheme()} className="text-amber-400 p-2 w-10 h-10"/>
+        }
+      
+        </button>
+      </div>
+      
+    
+
       <TodoApp />
     </Provider>
   );
